@@ -23,7 +23,7 @@ INT_PTR CALLBACK	About(HWND, UINT, WPARAM, LPARAM);
 bool				OpenConsole();
 void				InitClasses();	
 
-InitDirectX* directX;
+DirectX* directX;
 
 	
 
@@ -211,6 +211,6 @@ static bool OpenConsole() {
 
 void InitClasses() {
 
-	directX = new InitDirectX;
+	directX = new DirectX;
 
 }

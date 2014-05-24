@@ -40,6 +40,9 @@
     <Filter Include="Misc">
       <UniqueIdentifier>{e60cd208-5070-408f-8d26-5a216552f28f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Camera">
+      <UniqueIdentifier>{3006f753-e57c-460c-9ed7-2f856bab4732}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -54,8 +57,11 @@
     <ClInclude Include="ModelViewerApplication.h">
       <Filter>Header Files\Window</Filter>
     </ClInclude>
-    <ClInclude Include="InitDirectX.h">
+    <ClInclude Include="DirectX.h">
       <Filter>Header Files\DirectX</Filter>
+    </ClInclude>
+    <ClInclude Include="MainCamera.h">
+      <Filter>Header Files\Camera</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -65,8 +71,11 @@
     <ClCompile Include="ModelViewerApplication.cpp">
       <Filter>Source Files\Window</Filter>
     </ClCompile>
-    <ClCompile Include="InitDirectX.cpp">
+    <ClCompile Include="DirectX.cpp">
       <Filter>Source Files\DirectX</Filter>
+    </ClCompile>
+    <ClCompile Include="MainCamera.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
