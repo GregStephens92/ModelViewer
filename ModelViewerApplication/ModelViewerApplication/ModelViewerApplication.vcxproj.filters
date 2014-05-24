@@ -13,9 +13,33 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
-  </ItemGroup>
-  <ItemGroup>
-    <Text Include="ReadMe.txt" />
+    <Filter Include="Header Files\Model">
+      <UniqueIdentifier>{dac2d8fe-9409-4f45-89a0-24173d06db3c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Window">
+      <UniqueIdentifier>{aa8fb651-0487-4ef5-97c8-31fbfb954473}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\DirectX">
+      <UniqueIdentifier>{dd8e4548-5f6a-4c5c-bf70-196b884311d9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Import File">
+      <UniqueIdentifier>{fd7437d9-f9e7-47f0-b811-a8973c796a45}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Import File">
+      <UniqueIdentifier>{136f9e5c-5cd5-4b14-bf8b-3dc0edc100e5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Model">
+      <UniqueIdentifier>{d96a9360-4577-4115-9078-5d9d2199fa9f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\DirectX">
+      <UniqueIdentifier>{bfe8576d-e808-48c1-b03a-f516201ef0bb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Window">
+      <UniqueIdentifier>{70afb583-4e41-4880-a301-b4c48213be40}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Misc">
+      <UniqueIdentifier>{e60cd208-5070-408f-8d26-5a216552f28f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -28,7 +52,7 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="ModelViewerApplication.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\Window</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -36,7 +60,7 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="ModelViewerApplication.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Window</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -51,5 +75,10 @@
     <Image Include="ModelViewerApplication.ico">
       <Filter>Resource Files</Filter>
     </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="ReadMe.txt">
+      <Filter>Misc</Filter>
+    </Text>
   </ItemGroup>
 </Project>
