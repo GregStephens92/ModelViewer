@@ -1,10 +1,15 @@
 #include "ImportObj.h"
+#include <Windows.h>
 
-bool ImportObj::LoadFile() {
+bool ImportObj::LoadFile(PWSTR filePath) {
 	
 	cout << "Loading file" << endl;
 	
-	modelFile.open("boy.obj");
+	//PWSTR test = L"boy.obj";
+
+	modelFile.open(filePath);
+	//modelFile.open("boy.obj");
+
 
 	if (modelFile.is_open() || !modelFile) {
 		return true;
@@ -104,15 +109,11 @@ void ImportObj::ReadModelData() {
 		}
 		
 
-		//faces
-		if (line[0] == 'f' && line[1] == ' ') {
-			vertexLine = line.substr(3);
-
-
-
-			cout << vertexLine << endl;
-
-		}
+		////faces
+		//if (line[0] == 'f' && line[1] == ' ') {
+		//	vertexLine = line.substr(3);
+		//	cout << vertexLine << endl;
+		//}
 
 
 	}

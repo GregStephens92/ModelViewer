@@ -2,6 +2,7 @@
 #include <fstream>
 #include <string>
 #include <vector>
+#include <Windows.h>
 
 using namespace std;
 
@@ -21,7 +22,7 @@ class ImportFile {
 
 	public:
 
-		virtual bool LoadFile() = 0;
+		virtual bool LoadFile(PWSTR filePath) = 0;
 		virtual void ReadModelData() = 0;
 
 

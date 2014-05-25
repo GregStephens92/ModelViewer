@@ -9,7 +9,7 @@ class ImportObj: public ImportFile {
 
 	public:
 
-		bool LoadFile();
+		bool LoadFile(PWSTR filePath);
 		void ReadModelData();
 
 

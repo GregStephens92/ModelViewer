@@ -7,6 +7,7 @@
 #include <string>
 #include <iostream>
 #include <Shobjidl.h>
+#include <sstream>
 
 
 #define MAX_LOADSTRING 100
@@ -164,10 +165,10 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam) 
 			DestroyWindow(hWnd);
 			break;
 		case IDM_IMPORTOBJ:
-			//OpenFileBrowser();
-			if (objFile->LoadFile()) {
-				objFile->ReadModelData();
-			}
+			OpenFileBrowser();
+			//if (objFile->LoadFile()) {
+			//	objFile->ReadModelData();
+			//}
 
 		default:
 			return DefWindowProc(hWnd, message, wParam, lParam);
@@ -233,14 +234,12 @@ void OpenFileBrowser() {
                 if (SUCCEEDED(hr))
                 {
                     PWSTR pszFilePath;
+					stringstream filepath;
                     hr = pItem->GetDisplayName(SIGDN_FILESYSPATH, &pszFilePath);
-					
-                    // Display the file name to the user.
-                    if (SUCCEEDED(hr))
-                    {
-                        MessageBox(NULL, pszFilePath, L"File Path", MB_OK);
-                        CoTaskMemFree(pszFilePath);
-                    }
+
+					objFile->LoadFile(pszFilePath);
+					objFile->ReadModelData();
+
                     pItem->Release();
                 }
             }
