@@ -1,0 +1,17 @@
+
+
+class MainCamera { 
+
+	private:
+
+
+
+
+	public:
+
+
+
+
+};
+
+

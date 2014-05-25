@@ -63,6 +63,12 @@
     <ClInclude Include="MainCamera.h">
       <Filter>Header Files\Camera</Filter>
     </ClInclude>
+    <ClInclude Include="ImportFile.h">
+      <Filter>Header Files\Import File</Filter>
+    </ClInclude>
+    <ClInclude Include="ImportObj.h">
+      <Filter>Header Files\Import File</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -76,6 +82,12 @@
     </ClCompile>
     <ClCompile Include="MainCamera.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ImportFile.cpp">
+      <Filter>Source Files\Import File</Filter>
+    </ClCompile>
+    <ClCompile Include="ImportObj.cpp">
+      <Filter>Source Files\Import File</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

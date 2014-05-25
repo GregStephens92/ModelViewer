@@ -80,6 +80,8 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="DirectX.h" />
+    <ClInclude Include="ImportFile.h" />
+    <ClInclude Include="ImportObj.h" />
     <ClInclude Include="MainCamera.h" />
     <ClInclude Include="ModelViewerApplication.h" />
     <ClInclude Include="Resource.h" />
@@ -88,6 +90,8 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="DirectX.cpp" />
+    <ClCompile Include="ImportFile.cpp" />
+    <ClCompile Include="ImportObj.cpp" />
     <ClCompile Include="MainCamera.cpp" />
     <ClCompile Include="ModelViewerApplication.cpp" />
     <ClCompile Include="stdafx.cpp">

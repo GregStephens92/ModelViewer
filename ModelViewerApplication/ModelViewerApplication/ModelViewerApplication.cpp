@@ -1,10 +1,13 @@
 // ModelViewerApplication.cpp : Defines the entry point for the application.
 //
 
+#include <Windows.h>
 #include "stdafx.h"
 #include "ModelViewerApplication.h"
 #include <string>
 #include <iostream>
+#include <Shobjidl.h>
+
 
 #define MAX_LOADSTRING 100
 
@@ -21,9 +24,14 @@ BOOL				InitInstance(HINSTANCE, int);
 LRESULT CALLBACK	WndProc(HWND, UINT, WPARAM, LPARAM);
 INT_PTR CALLBACK	About(HWND, UINT, WPARAM, LPARAM);
 bool				OpenConsole();
+void				OpenFileBrowser();
+
 void				InitClasses();	
 
+//Variables
 DirectX* directX;
+
+ImportObj* objFile;
 
 	
 
@@ -155,6 +163,12 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam) 
 		case IDM_EXIT:
 			DestroyWindow(hWnd);
 			break;
+		case IDM_IMPORTOBJ:
+			//OpenFileBrowser();
+			if (objFile->LoadFile()) {
+				objFile->ReadModelData();
+			}
+
 		default:
 			return DefWindowProc(hWnd, message, wParam, lParam);
 		}
@@ -192,6 +206,51 @@ INT_PTR CALLBACK About(HWND hDlg, UINT message, WPARAM wParam, LPARAM lParam) {
 	return (INT_PTR)FALSE;
 }
 
+
+void OpenFileBrowser() {
+	cout << "openfilebrowser" << endl;
+
+	HRESULT hr = CoInitializeEx(NULL, COINIT_APARTMENTTHREADED | 
+        COINIT_DISABLE_OLE1DDE);
+    if (SUCCEEDED(hr))
+    {
+        IFileOpenDialog *pFileOpen;
+
+        // Create the FileOpenDialog object.
+        hr = CoCreateInstance(CLSID_FileOpenDialog, NULL, CLSCTX_ALL, 
+                IID_IFileOpenDialog, reinterpret_cast<void**>(&pFileOpen));
+
+        if (SUCCEEDED(hr))
+        {
+            // Show the Open dialog box.
+            hr = pFileOpen->Show(NULL);
+
+            // Get the file name from the dialog box.
+            if (SUCCEEDED(hr))
+            {
+                IShellItem *pItem;
+                hr = pFileOpen->GetResult(&pItem);
+                if (SUCCEEDED(hr))
+                {
+                    PWSTR pszFilePath;
+                    hr = pItem->GetDisplayName(SIGDN_FILESYSPATH, &pszFilePath);
+					
+                    // Display the file name to the user.
+                    if (SUCCEEDED(hr))
+                    {
+                        MessageBox(NULL, pszFilePath, L"File Path", MB_OK);
+                        CoTaskMemFree(pszFilePath);
+                    }
+                    pItem->Release();
+                }
+            }
+            pFileOpen->Release();
+        }
+        CoUninitialize();
+    }
+
+}
+
 static bool OpenConsole() {
 
 	bool err;
@@ -212,5 +271,9 @@ static bool OpenConsole() {
 void InitClasses() {
 
 	directX = new DirectX;
+
+	objFile = new ImportObj;
+
+
 
 }
