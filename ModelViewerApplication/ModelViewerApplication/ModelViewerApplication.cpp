@@ -27,14 +27,15 @@ INT_PTR CALLBACK	About(HWND, UINT, WPARAM, LPARAM);
 bool				OpenConsole();
 void				OpenFileBrowser();
 
-void				InitClasses();	
+void				InitializeClasses();	
 
 //Variables
-DirectX* directX;
+HWND		hWnd;
 
-ImportObj* objFile;
-
-	
+DirectX*	directX;
+ImportObj*	objFile;
+Model*		model;
+MainCamera*	camera;
 
 int APIENTRY _tWinMain(_In_ HINSTANCE hInstance,
                      _In_opt_ HINSTANCE hPrevInstance,
@@ -44,7 +45,7 @@ int APIENTRY _tWinMain(_In_ HINSTANCE hInstance,
 	UNREFERENCED_PARAMETER(lpCmdLine);
 
  	// TODO: Place code here.
-	MSG msg;
+	//MSG msg;
 	HACCEL hAccelTable;
 
 	// Initialize global strings
@@ -63,18 +64,27 @@ int APIENTRY _tWinMain(_In_ HINSTANCE hInstance,
 	OpenConsole();
 
 	//InitClasses
-	InitClasses();
+	InitializeClasses();
+
+	//Init Camera
+	camera->InitializeCameraMatrixs();
 
 	//Init DirectX
-	directX->SetupDirectX();
+	directX->InitializeDirectX(hWnd, camera);
 
+	
 	// Main message loop:
-	while (GetMessage(&msg, NULL, 0, 0)) {
-		if (!TranslateAccelerator(msg.hwnd, hAccelTable, &msg)) {
-			TranslateMessage(&msg);
-			DispatchMessage(&msg);
-		}
-	}
+	MSG msg = {0};
+    while(WM_QUIT != msg.message) {
+        if(PeekMessage(&msg, NULL, 0, 0, PM_REMOVE)) {
+            TranslateMessage( &msg );
+            DispatchMessage( &msg );
+        } else {
+			//directX->Update();
+			//if model is ready to go, update and draw it
+			model->Update();
+        }
+    }
 
 	return (int) msg.wParam;
 }
@@ -117,7 +127,6 @@ ATOM MyRegisterClass(HINSTANCE hInstance) {
 //        create and display the main program window.
 //
 BOOL InitInstance(HINSTANCE hInstance, int nCmdShow) {
-   HWND hWnd;
 
    hInst = hInstance; // Store instance handle in our global variable
 
@@ -237,8 +246,13 @@ void OpenFileBrowser() {
 					stringstream filepath;
                     hr = pItem->GetDisplayName(SIGDN_FILESYSPATH, &pszFilePath);
 
+					//Load in the object file and get the data
 					objFile->LoadFile(pszFilePath);
 					objFile->ReadModelData();
+
+					//Initialize the Model
+					model->InitializeModel(directX, camera);
+
 
                     pItem->Release();
                 }
@@ -267,12 +281,15 @@ static bool OpenConsole() {
 	return err;   
 }
 
-void InitClasses() {
+void InitializeClasses() {
+
+	camera = new MainCamera;
 
 	directX = new DirectX;
 
 	objFile = new ImportObj;
 
+	model = new Model;
 
 
 }

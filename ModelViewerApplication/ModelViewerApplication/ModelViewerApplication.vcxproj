@@ -41,6 +41,8 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
+    <IncludePath>C:\Program Files %28x86%29\Microsoft DirectX SDK %28June 2010%29\Include;$(IncludePath)</IncludePath>
+    <LibraryPath>C:\Program Files %28x86%29\Microsoft DirectX SDK %28June 2010%29\Lib\x86;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
@@ -83,6 +85,7 @@
     <ClInclude Include="ImportFile.h" />
     <ClInclude Include="ImportObj.h" />
     <ClInclude Include="MainCamera.h" />
+    <ClInclude Include="Model.h" />
     <ClInclude Include="ModelViewerApplication.h" />
     <ClInclude Include="Resource.h" />
     <ClInclude Include="stdafx.h" />
@@ -93,6 +96,7 @@
     <ClCompile Include="ImportFile.cpp" />
     <ClCompile Include="ImportObj.cpp" />
     <ClCompile Include="MainCamera.cpp" />
+    <ClCompile Include="Model.cpp" />
     <ClCompile Include="ModelViewerApplication.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>

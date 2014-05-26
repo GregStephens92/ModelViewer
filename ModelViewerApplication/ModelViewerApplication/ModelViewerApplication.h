@@ -2,5 +2,5 @@
 
 #include "resource.h"
 #include "DirectX.h"
-//#include "ImportFile.h"
+#include "Model.h"
 #include "ImportObj.h"

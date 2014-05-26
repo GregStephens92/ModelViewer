@@ -43,6 +43,9 @@
     <Filter Include="Header Files\Camera">
       <UniqueIdentifier>{3006f753-e57c-460c-9ed7-2f856bab4732}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Camera">
+      <UniqueIdentifier>{4e1263bb-daf2-4e76-aed7-c1b00fedb19b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -69,6 +72,9 @@
     <ClInclude Include="ImportObj.h">
       <Filter>Header Files\Import File</Filter>
     </ClInclude>
+    <ClInclude Include="Model.h">
+      <Filter>Header Files\Model</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -80,14 +86,17 @@
     <ClCompile Include="DirectX.cpp">
       <Filter>Source Files\DirectX</Filter>
     </ClCompile>
-    <ClCompile Include="MainCamera.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="ImportFile.cpp">
       <Filter>Source Files\Import File</Filter>
     </ClCompile>
     <ClCompile Include="ImportObj.cpp">
       <Filter>Source Files\Import File</Filter>
+    </ClCompile>
+    <ClCompile Include="Model.cpp">
+      <Filter>Source Files\Model</Filter>
+    </ClCompile>
+    <ClCompile Include="MainCamera.cpp">
+      <Filter>Source Files\Camera</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

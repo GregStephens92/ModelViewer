@@ -47,19 +47,19 @@ void ImportObj::ReadModelData() {
 			value = vertexLine.substr(0, vertexLine.find(' '));
 			vertices.push_back((float)atof(value.c_str()));
 			
-			cout << "first: " << value << endl;
+			cout << "vertex first: " << value << endl;
 
 			//get second float
 			value = vertexLine.substr(value.length() + 1, vertexLine.find(' '));
 			vertices.push_back((float)atof(value.c_str()));
 			
-			cout << "second: " << value << endl;
+			cout << "vertex second: " << value << endl;
 
 			//get third float
 			value = vertexLine.substr(vertexLine.find_last_of(' '));
 			vertices.push_back((float)atof(value.c_str()));
 			
-			cout << "third: " << value << endl;
+			cout << "vertex third: " << value << endl;
 						
 		}
 
@@ -72,18 +72,17 @@ void ImportObj::ReadModelData() {
 			value = vertexLine.substr(0, vertexLine.find(' '));
 			vertices.push_back((float)atof(value.c_str()));
 			
-			cout << "first: " << value << endl;
+			cout << "uv first: " << value << endl;
 
 			//get second float
 			value = vertexLine.substr(value.length() + 1, vertexLine.find(' '));
 			vertices.push_back((float)atof(value.c_str()));
 			
-			cout << "second: " << value << endl;
+			cout << "uv second: " << value << endl;
 
 		}
 
 		//vertex normals
-		//texture uv's
 		if (line[0] == 'v' && line[1] == 'n' && line[2] == ' ') {
 				
 			vertexLine = line.substr(3);
@@ -92,19 +91,19 @@ void ImportObj::ReadModelData() {
 			value = vertexLine.substr(0, vertexLine.find(' '));
 			vertices.push_back((float)atof(value.c_str()));
 			
-			cout << "first: " << value << endl;
+			cout << "normal first: " << value << endl;
 
 			//get second float
 			value = vertexLine.substr(value.length() + 1, vertexLine.find(' '));
 			vertices.push_back((float)atof(value.c_str()));
 			
-			cout << "second: " << value << endl;
+			cout << "normal second: " << value << endl;
 
 			//get third float
 			value = vertexLine.substr(vertexLine.find_last_of(' '));
 			vertices.push_back((float)atof(value.c_str()));
 			
-			cout << "third: " << value << endl;
+			cout << "normal third: " << value << endl;
 						
 		}
 		
