@@ -1,3 +1,5 @@
+#pragma once
+
 #include "ImportFile.h"
 
 class ImportObj: public ImportFile {
@@ -10,7 +12,8 @@ class ImportObj: public ImportFile {
 	public:
 
 		bool LoadFile(PWSTR filePath);
-		void ReadModelData();
-
+		void ReadModelData(Model* inModel);
+		void GetCounts();
+		void SetupModelInfo();
 
 };

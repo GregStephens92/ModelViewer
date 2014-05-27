@@ -14,11 +14,10 @@ void DirectX::InitializeDirectX(HWND inHWnd, MainCamera* inCamera) {
 	hWnd = inHWnd;
 	camera = inCamera;
 
-    GetClientRect( hWnd, &rc );
+    GetClientRect(hWnd, &rc);
     width = rc.right - rc.left;
     height = rc.bottom - rc.top;
 	
-    HRESULT hr = S_OK;
 	driverType = D3D_DRIVER_TYPE_NULL;
 	featureLevel = D3D_FEATURE_LEVEL_11_0;
 	d3dDevice = NULL;
@@ -65,25 +64,19 @@ void DirectX::InitializeDirectX(HWND inHWnd, MainCamera* inCamera) {
     for( UINT driverTypeIndex = 0; driverTypeIndex < numDriverTypes; driverTypeIndex++ )
     {
         driverType = driverTypes[driverTypeIndex];
-        hr = D3D11CreateDeviceAndSwapChain( NULL, driverType, NULL, createDeviceFlags, featureLevels, numFeatureLevels,
+       D3D11CreateDeviceAndSwapChain( NULL, driverType, NULL, createDeviceFlags, featureLevels, numFeatureLevels,
                                             D3D11_SDK_VERSION, &sd, &swapChain, &d3dDevice, &featureLevel, &immediateContext);
-        if( SUCCEEDED( hr ) )
-            break;
+
     }
-    if( FAILED( hr ) )
-        return hr;
+
 
     // Create a render target view
     ID3D11Texture2D* backBuffer = NULL;
-    hr = swapChain->GetBuffer( 0, __uuidof( ID3D11Texture2D ), ( LPVOID* )&backBuffer );
-    if( FAILED( hr ) )
-        return hr;
+    swapChain->GetBuffer( 0, __uuidof( ID3D11Texture2D ), ( LPVOID* )&backBuffer );
 
-	hr = d3dDevice->CreateRenderTargetView( backBuffer, NULL, &renderTargetView );
+	d3dDevice->CreateRenderTargetView( backBuffer, NULL, &renderTargetView );
     backBuffer->Release();
-    if( FAILED( hr ) )
-        return hr;
-
+	
     immediateContext->OMSetRenderTargets( 1, &renderTargetView, NULL );
 
     // Setup the viewport

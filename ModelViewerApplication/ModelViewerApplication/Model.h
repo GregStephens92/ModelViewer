@@ -1,10 +1,14 @@
+#pragma once
+
 #include <windows.h>
 #include <iostream>
 #include <string>
 #include <d3dx11.h>
+#include <d3dx11effect.h>
 #include <xnamath.h>
 #include "DirectX.h"
 #include "MainCamera.h"
+#include <vector>
 
 using namespace std;
 
@@ -26,8 +30,9 @@ class Model {
 
 	ID3D11VertexShader*		vertexShader;
 
-	//Vertex Buffer
+	//Vertex / index Buffer
 	ID3D11Buffer*			vertexBuffer;
+	ID3D11Buffer*			indexBuffer;
 
 	//Input Layout
 	ID3D11InputLayout*		vertexLayout;
@@ -87,6 +92,7 @@ class Model {
 	D3D11_RASTERIZER_DESC rasterizerDesc;
 
 	int verticesCount;
+	int indexCount;
 	float rotation;
 
 	//Mesh Structures
@@ -122,8 +128,9 @@ class Model {
 
 	HRESULT hr;
 
-
-
+	vector<DWORD>* indices;
+	vector<ColorVertex>* vertexBufferList; 
+	
 
 
 	public:
@@ -142,7 +149,11 @@ class Model {
 		void Render();
 		
 		void SetupRender();
+		
+		void SetVertices(int inVerticesCount, ColorVertex inModelInfo[]);
+		void SetIndices();
 		void SetNormals();
+
 
 		XMFLOAT4X4 GetWorldMatrix();
 

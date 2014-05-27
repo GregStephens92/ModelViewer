@@ -67,17 +67,26 @@ void Model::Render() {
 		
 		technique->GetPassByIndex(p)->Apply(0, immediateContext);
 
-		immediateContext->Draw( verticesCount, 0 );
+		immediateContext->DrawIndexed(indexCount, 0, 0);
 	}
 	
 	swapChain->Present(0, 0);
 }
 
+void Model::SetVertices(int inVerticesCount, ColorVertex inModelInfo[]) {
+	memcpy(vertexBufferList, inModelInfo, sizeof(inModelInfo));
+	verticesCount = inVerticesCount;
+}
+
+void Model::SetIndices() {
+
+
+}
+
 
 void Model::InitializeMesh() {
 	
-	verticesCount = 36;
-
+	//vertex buffer
     D3D11_BUFFER_DESC bd;
 	ZeroMemory( &bd, sizeof(bd) );
     bd.Usage = D3D11_USAGE_DEFAULT;
@@ -87,7 +96,7 @@ void Model::InitializeMesh() {
 	
 	D3D11_SUBRESOURCE_DATA InitData;
 	ZeroMemory( &InitData, sizeof(InitData) );
-	InitData.pSysMem = cube;
+	InitData.pSysMem = vertexBufferList;
 	
 	device->CreateBuffer( &bd, &InitData, &vertexBuffer );
 
@@ -98,6 +107,23 @@ void Model::InitializeMesh() {
 
     // Set primitive topology
     immediateContext->IASetPrimitiveTopology( D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST );
+
+	//index buffer
+	D3D11_BUFFER_DESC indexBufferDesc;
+	ZeroMemory( &indexBufferDesc, sizeof(indexBufferDesc) );
+
+	indexBufferDesc.Usage = D3D11_USAGE_DEFAULT;
+	indexBufferDesc.ByteWidth = sizeof(DWORD) * indexCount * 3;
+	indexBufferDesc.BindFlags = D3D11_BIND_INDEX_BUFFER;
+	indexBufferDesc.CPUAccessFlags = 0;
+	indexBufferDesc.MiscFlags = 0;
+
+	D3D11_SUBRESOURCE_DATA iinitData;
+
+	iinitData.pSysMem = indices;
+	device->CreateBuffer(&indexBufferDesc, &iinitData, &indexBuffer);
+
+	immediateContext->IASetIndexBuffer(indexBuffer, DXGI_FORMAT_R32_UINT, 0);
 
 
 }
@@ -153,12 +179,10 @@ void Model::InitializeEffect() {
 	fxSpecularLight->SetRawValue(new XMFLOAT4 (0.8, 0.8f, 0.8f, 1.0f), 0, sizeof(XMFLOAT4));
 	fxSpecularPower->SetFloat(1.0f);
 	
-	//XMFLOAT4 cameraPos = camera->getPositon();
-
-	//fxEyePos->SetRawValue(new XMFLOAT3(0, 0, 0), 0, sizeof(XMFLOAT3));
 }
 
 void Model::InitializeLayout() {
+	
 	// Define the input layout
     D3D11_INPUT_ELEMENT_DESC layout[] =
     {

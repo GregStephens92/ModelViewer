@@ -19,20 +19,63 @@ bool ImportObj::LoadFile(PWSTR filePath) {
 
 }
 
-void ImportObj::ReadModelData() {
+void ImportObj::GetCounts() {
+	
+	string line;
+
+	while(!modelFile.eof()) {
+		
+		getline(modelFile, line);
+
+		if(line[0] == 'v') {
+
+			if(line[1] == ' ') {
+				vertexCount++;
+			} 
+			
+			if (line[1] == 't') {
+				uvCount++;
+			} 
+
+			if (line[1] == 'n') {
+				normalCount++;
+			}			
+		}
+
+		if (line[0] == 'f') {
+			if (line[1] == ' ') {
+				faceCount++;
+			}
+		}
+
+
+
+	}
+
+}
+
+void ImportObj::ReadModelData(Model* inModel) {
 	cout << "Reading data" << endl;
+
+	model = inModel;
+
+	GetCounts();
 	
 	string line;
 	string vertexLine;
 
 	string value;
 
-	//float vertexX, vertexY, vertexZ;
+	struct Faces {
+		XMFLOAT3 info;
+	};
 
 	vector<float> vertices;
 	vector<float> uvs;
 	vector<float> normals;
-	vector<float> faces;
+	vector<Faces> faces;
+
+	modelInfo = new ColorVertex[10];
 
 	while(!modelFile.eof()) {
 		
@@ -109,15 +152,28 @@ void ImportObj::ReadModelData() {
 		
 
 		////faces
-		//if (line[0] == 'f' && line[1] == ' ') {
-		//	vertexLine = line.substr(3);
-		//	cout << vertexLine << endl;
-		//}
+		int vertex, uv, normal;
+
+		if (line[0] == 'f' && line[1] == ' ') {
+			vertexLine = line.substr(3);
+
+
+		}
 
 
 	}
 
+	SetupModelInfo();
+
 	cout << "Done";	
 	modelFile.close();
+
+}
+
+void ImportObj::SetupModelInfo() {
+
+	
+	
+
 
 }

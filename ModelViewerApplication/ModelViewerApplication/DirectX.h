@@ -1,3 +1,5 @@
+#pragma once
+
 #include <Windows.h>
 #include <string>
 #include <iostream>
@@ -28,6 +30,10 @@ class DirectX {
 		XMFLOAT4X4 wvp;
 
 		MainCamera* camera;
+
+		RECT rc;
+		UINT width;
+		UINT height;
 
 	public:
 

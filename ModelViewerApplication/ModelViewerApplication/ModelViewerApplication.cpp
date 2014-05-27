@@ -32,7 +32,7 @@ void				InitializeClasses();
 //Variables
 HWND		hWnd;
 
-DirectX*	directX;
+DirectX*	directX = new DirectX;
 ImportObj*	objFile;
 Model*		model;
 MainCamera*	camera;
@@ -248,7 +248,7 @@ void OpenFileBrowser() {
 
 					//Load in the object file and get the data
 					objFile->LoadFile(pszFilePath);
-					objFile->ReadModelData();
+					objFile->ReadModelData(model);
 
 					//Initialize the Model
 					model->InitializeModel(directX, camera);
